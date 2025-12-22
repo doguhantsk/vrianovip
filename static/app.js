@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (introOverlay) {
         setTimeout(() => {
             introOverlay.classList.add('hide');
-        }, 2500); // 2.5 saniye sonra perde kalkar
+        }, 2000); // 2.0 saniye sonra perde kalkar
     }
 
     // 2. Scroll Animasyonları (Reveal)
