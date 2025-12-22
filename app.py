@@ -112,3 +112,24 @@ def api_categories():
 
 if __name__ == '__main__':
     app.run(debug=True)
+# --- API ENDPOINTS (Admin Paneli İçin JSON Veri) ---
+@app.route('/api/shoes')
+def api_shoes():
+    conn = get_db_connection()
+    items = conn.execute('SELECT * FROM shoes').fetchall()
+    conn.close()
+    return jsonify([dict(ix) for ix in items])
+
+@app.route('/api/bags')
+def api_bags():
+    conn = get_db_connection()
+    items = conn.execute('SELECT * FROM bags').fetchall()
+    conn.close()
+    return jsonify([dict(ix) for ix in items])
+
+@app.route('/api/offers')
+def api_offers():
+    conn = get_db_connection()
+    items = conn.execute('SELECT * FROM offers').fetchall()
+    conn.close()
+    return jsonify([dict(ix) for ix in items])

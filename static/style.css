@@ -246,3 +246,93 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
     .page-header h1 { font-size: 2.5rem; }
     .login-box { width: 90%; padding: 40px; }
 }
+/* --- ADMIN PANEL STYLES --- */
+
+/* Navbar Ayarı */
+.admin-nav {
+    background: var(--surface); border-bottom: 1px solid #222;
+    padding: 15px 40px; position: sticky;
+}
+.brand-small { font-family: var(--font-head); letter-spacing: 2px; color: var(--gold); font-weight: bold; }
+.btn-gold-sm {
+    border: 1px solid var(--gold); padding: 5px 15px; font-size: 0.7rem; 
+    color: var(--gold); text-transform: uppercase; letter-spacing: 1px;
+}
+.btn-gold-sm:hover { background: var(--gold); color: #000; }
+
+/* Layout */
+.admin-container {
+    display: grid; grid-template-columns: 350px 1fr; gap: 40px;
+    padding: 40px; min-height: 100vh;
+    align-items: start;
+}
+
+/* Sidebar & Form */
+.admin-sidebar {
+    background: var(--surface); border: 1px solid #333;
+    padding: 30px; position: sticky; top: 100px;
+    border-radius: 4px;
+}
+.sidebar-header h3 { font-family: var(--font-head); color: #fff; margin-bottom: 5px; }
+.sidebar-header p { color: #666; font-size: 0.8rem; margin-bottom: 20px; }
+
+.category-tabs { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 15px; }
+.tab-btn {
+    background: transparent; border: none; color: #666; cursor: pointer;
+    font-family: var(--font-body); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
+    padding: 5px 0; transition: 0.3s;
+}
+.tab-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+
+.admin-form label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px; }
+.admin-form .input-group { margin-bottom: 20px; }
+.admin-form textarea {
+    width: 100%; background: transparent; border: 1px solid #444; color: #fff; padding: 10px;
+    font-family: var(--font-body); resize: vertical;
+}
+.admin-form textarea:focus { outline: none; border-color: var(--gold); }
+
+/* Content & Table */
+.content-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+}
+.content-header h2 { font-family: var(--font-head); color: var(--gold); }
+
+.search-box {
+    position: relative; width: 300px;
+}
+.search-box input {
+    width: 100%; background: transparent; border: 1px solid #333; padding: 10px 10px 10px 40px;
+    color: #fff; border-radius: 50px;
+}
+.search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666; }
+
+.table-wrapper {
+    background: var(--surface); border: 1px solid #333; border-radius: 4px; overflow: hidden;
+}
+.admin-table { width: 100%; border-collapse: collapse; text-align: left; }
+.admin-table th {
+    background: #1a1a1a; color: var(--gold); padding: 15px; font-weight: normal;
+    font-family: var(--font-head); letter-spacing: 1px; font-size: 0.9rem;
+}
+.admin-table td {
+    padding: 15px; border-bottom: 1px solid #222; color: #ccc; vertical-align: middle;
+}
+.admin-table tr:hover { background: rgba(255,255,255,0.02); }
+.admin-table img {
+    width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #333;
+}
+
+/* Action Buttons */
+.action-btn {
+    background: transparent; border: none; cursor: pointer; font-size: 1rem; margin-right: 10px; transition: 0.3s;
+}
+.action-btn.edit { color: #4a90e2; }
+.action-btn.delete { color: #e24a4a; }
+.action-btn:hover { transform: scale(1.2); }
+
+/* Mobil Uyum */
+@media (max-width: 900px) {
+    .admin-container { grid-template-columns: 1fr; }
+    .admin-sidebar { position: relative; top: 0; }
+}
