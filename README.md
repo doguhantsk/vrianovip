@@ -1,4 +1,4 @@
-# Virano - Single-page Showroom
+# VRIANO - Single-page Showroom
 
 Simple Flask-based single-page showroom for `Ayakkabı` and `Çanta` with an admin panel.
 
