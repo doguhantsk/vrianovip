@@ -1,38 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Virano - Showroom</title>
-  <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRANO | The Night Edition</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Prata&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header>
-    <h1>Virano</h1>
-    <nav>
-      <a href="/offers">Fırsatlar</a>
-      <a href="/ayakkabi">Ayakkabı</a>
-      <a href="/canta">Çanta</a>
-      <a href="/login">Admin</a>
+
+    <div class="intro-overlay">
+        <h1 class="intro-title">VIRANO</h1>
+        <div class="intro-line"></div>
+    </div>
+
+    <div class="cursor-glow"></div>
+
+    <nav class="navbar">
+        <a href="/" class="brand">VIRANO</a>
+        <div class="nav-links">
+            <a href="/ayakkabi" class="magnetic-btn">Koleksiyon</a>
+            <a href="/canta" class="magnetic-btn">Çanta</a>
+            <a href="/offers" class="magnetic-btn">World of Virano</a>
+            <a href="/login" class="btn-gold">Giriş</a>
+        </div>
+        <div class="menu-btn">MENU</div>
     </nav>
-  </header>
 
-  <main>
-    <section id="home-hero">
-      <h2>Hoşgeldiniz — Virano Showroom</h2>
-      <p>Ayakkabı ve çanta koleksiyonlarımızı keşfedin. Fırsatlar için sayfamıza göz atın.</p>
-      <p>
-        <a class="btn" href="/offers">Fırsatlar</a>
-        <a class="btn" href="/ayakkabi">Ayakkabı</a>
-        <a class="btn" href="/canta">Çanta</a>
-      </p>
-    </section>
-  </main>
+    <main>
+        <section class="hero">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2000&auto=format&fit=crop" alt="Hero">
+            </div>
+            <div class="hero-content">
+                <span class="tagline fade-in">2025 NIGHT COLLECTION</span>
+                <h1 class="hero-headline">
+                    <span class="line">Karanlığın</span>
+                    <span class="line indent">İçindeki</span>
+                    <span class="line">Işıltı</span>
+                </h1>
+                <div class="scroll-prompt">
+                    <span>Keşfet</span>
+                    <div class="line-drop"></div>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <small>&copy; Virano</small>
-  </footer>
+        <section class="manifesto-section">
+            <div class="container">
+                <p class="reveal-text">
+                    Gerçek stil, güneş battığında ortaya çıkar. Virano, geceye hükmedenler için tasarlandı. Sadece bir ayakkabı değil, bir statü sembolü.
+                </p>
+            </div>
+        </section>
 
-  <script src="/static/app.js"></script>
+        <section class="showcase">
+            <div class="product-card parallax-card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1200&auto=format&fit=crop" alt="Luxury Heels">
+                    <div class="overlay-info">
+                        <h3>Midnight Stiletto</h3>
+                        <span>4.800 ₺</span>
+                    </div>
+                </div>
+                <div class="card-meta">
+                    <span class="number">01</span>
+                    <span class="label">Gece Koleksiyonu</span>
+                </div>
+            </div>
+
+            <div class="product-card parallax-card offset">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1200&auto=format&fit=crop" alt="Mens Shoe">
+                    <div class="overlay-info">
+                        <h3>Onyx Loafer</h3>
+                        <span>3.500 ₺</span>
+                    </div>
+                </div>
+                <div class="card-meta">
+                    <span class="number">02</span>
+                    <span class="label">Erkek Serisi</span>
+                </div>
+            </div>
+
+            <div class="product-card parallax-card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1200&auto=format&fit=crop" alt="Bag">
+                    <div class="overlay-info">
+                        <h3>Velvet Clutch</h3>
+                        <span>5.200 ₺</span>
+                    </div>
+                </div>
+                <div class="card-meta">
+                    <span class="number">03</span>
+                    <span class="label">Aksesuar</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="signature">
+            <h2 class="outlined-text">VIRANO</h2>
+            <a href="/ayakkabi" class="cta-circle">
+                <span>MAĞAZAYA<br>GİT</span>
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="f-links">
+                <a href="#">Instagram</a>
+                <a href="#">WhatsApp</a>
+                <a href="#">Email</a>
+            </div>
+            <div class="copyright">© 2025 VIRANO VIP</div>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
 </body>
 </html>

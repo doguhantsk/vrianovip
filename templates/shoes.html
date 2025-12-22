@@ -1,26 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ayakkabı - Virano</title>
-  <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRANO | Shoe Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header>
-    <h1>Ayakkabı</h1>
-    <nav>
-      <a href="/">Anasayfa</a>
-      <a href="/offers">Fırsatlar</a>
-      <a href="/canta">Çanta</a>
-      <a href="/login">Admin</a>
+    <div class="cursor-glow"></div>
+
+    <nav class="navbar">
+        <a href="/" class="brand">VIRANO</a>
+        <div class="nav-links">
+            <a href="/ayakkabi" class="magnetic-btn active">Koleksiyon</a>
+            <a href="/canta" class="magnetic-btn">Çanta</a>
+            <a href="/offers" class="magnetic-btn">World of Virano</a>
+            <a href="/login" class="btn-gold">Giriş</a>
+        </div>
     </nav>
-  </header>
-  <main>
-    <section>
-      <div id="shoes-list" class="grid"></div>
-    </section>
-  </main>
-  <script src="/static/app.js"></script>
+
+    <main>
+        <header class="page-header">
+            <h1 class="reveal-text">Ayakkabı Koleksiyonu</h1>
+            <p class="subtitle">Her adımda bir imza.</p>
+        </header>
+
+        <section class="collection-grid">
+            {% for shoe in shoes %}
+            <article class="collection-item parallax-card">
+                <div class="item-image">
+                    <img src="{{ shoe.image if shoe.image else 'https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop' }}" alt="{{ shoe.name }}">
+                    <div class="hover-overlay">
+                        <button class="btn-gold">İncele</button>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3>{{ shoe.name }}</h3>
+                    <p class="desc">{{ shoe.description }}</p>
+                    <span class="price">{{ shoe.price }} ₺</span>
+                </div>
+            </article>
+            {% else %}
+            <p class="no-items">Bu koleksiyonda henüz parça bulunmuyor.</p>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <small>© 2025 Virano VIP. Tüm hakları saklıdır.</small>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
 </body>
 </html>

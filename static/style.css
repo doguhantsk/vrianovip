@@ -1,12 +1,248 @@
-:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
-body{margin:0;background:#f7f7f7;color:#111}
-header{background:#222;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
-header nav a{color:#fff;margin-left:12px;text-decoration:none}
-main{padding:20px;max-width:1000px;margin:0 auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.card{background:#fff;padding:12px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.card h3{margin:0 0 8px}
-.auth{max-width:320px;margin:60px auto;padding:20px;background:#fff;border-radius:8px}
-label{display:block;margin-bottom:8px}
-button{background:#0b79ff;color:#fff;border:none;padding:8px 12px;border-radius:6px}
-.error{color:#b00}
+/* --- MIDNIGHT LUXURY STYLE --- */
+
+:root {
+    --bg: #050505;        /* Derin Siyah */
+    --surface: #0f0f0f;   /* Koyu Antrasit */
+    --text: #e0e0e0;      /* Kırık Beyaz */
+    --gold: #d4af37;      /* Lüks Altın */
+    --font-head: 'Prata', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; cursor: none; /* Özel cursor için */ }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* 1. Intro Animation */
+.intro-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 9999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1) 2s; /* 2sn bekle sonra yukarı kay */
+}
+.intro-title {
+    font-family: var(--font-head); font-size: 4rem; color: var(--gold); letter-spacing: 10px;
+    opacity: 0; animation: fadeIn 1s forwards 0.5s;
+}
+.intro-line {
+    width: 0; height: 1px; background: var(--gold); margin-top: 20px;
+    animation: growLine 1s forwards 1s;
+}
+.intro-overlay.hide { transform: translateY(-100%); }
+
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes growLine { to { width: 100px; } }
+
+/* 2. Cursor Glow (Spot Işığı) */
+.cursor-glow {
+    position: fixed; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%); mix-blend-mode: screen;
+}
+/* Standart cursor yerine küçük bir nokta ekleyelim */
+body::after {
+    content: ''; position: fixed; top:0; left:0; width: 8px; height: 8px;
+    background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 10000;
+    transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+    left: var(--cursor-x, -100px); top: var(--cursor-y, -100px);
+}
+
+/* 3. Navbar */
+.navbar {
+    position: fixed; top: 0; width: 100%; padding: 30px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 1000; mix-blend-mode: difference;
+}
+.brand { font-family: var(--font-head); font-size: 1.5rem; font-weight: bold; letter-spacing: 3px; }
+.nav-links { display: flex; gap: 40px; align-items: center; }
+.nav-links a { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+.btn-gold { border: 1px solid var(--gold); padding: 10px 25px; color: var(--gold); }
+.btn-gold:hover { background: var(--gold); color: #000; }
+.menu-btn { display: none; }
+
+/* 4. Hero Section */
+.hero {
+    height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+}
+.hero-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+    opacity: 0.6; /* Resmi karart */
+}
+.hero-bg img { transform: scale(1.1); transition: transform 10s; }
+.hero:hover .hero-bg img { transform: scale(1); }
+
+.hero-content { position: relative; z-index: 2; text-align: center; }
+.tagline { color: var(--gold); letter-spacing: 5px; font-size: 0.8rem; display: block; margin-bottom: 20px; }
+.hero-headline {
+    font-family: var(--font-head); font-size: 5vw; line-height: 1.1; margin-bottom: 40px;
+}
+.hero-headline .line { display: block; }
+.hero-headline .indent { margin-left: 100px; font-style: italic; color: #888; }
+
+.scroll-prompt {
+    position: absolute; bottom: -15vh; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+}
+.line-drop { width: 1px; height: 60px; background: rgba(255,255,255,0.3); }
+
+/* 5. Manifesto */
+.manifesto-section { padding: 150px 20px; text-align: center; display: flex; justify-content: center; }
+.manifesto-section p {
+    font-family: var(--font-head); font-size: 2.5rem; max-width: 900px; line-height: 1.4;
+    color: #666; transition: color 1s;
+}
+.manifesto-section p:hover { color: #fff; }
+
+/* 6. Showcase Cards */
+.showcase {
+    padding: 100px 10vw; display: flex; flex-direction: column; gap: 150px;
+}
+.product-card {
+    display: flex; gap: 40px; align-items: flex-end; position: relative;
+    width: 60%;
+}
+.product-card.offset { margin-left: auto; flex-direction: row-reverse; }
+
+.img-box {
+    width: 100%; height: 500px; overflow: hidden; position: relative;
+    transition: transform 0.3s;
+}
+.img-box img { filter: grayscale(100%); transition: 0.6s; }
+.product-card:hover .img-box img { filter: grayscale(0%); transform: scale(1.05); }
+
+.overlay-info {
+    position: absolute; bottom: 20px; left: 20px;
+    opacity: 0; transform: translateY(20px); transition: 0.4s;
+    background: rgba(0,0,0,0.8); padding: 15px 30px; border-left: 2px solid var(--gold);
+}
+.product-card:hover .overlay-info { opacity: 1; transform: translateY(0); }
+.overlay-info h3 { font-family: var(--font-head); margin-bottom: 5px; }
+.overlay-info span { color: var(--gold); }
+
+.card-meta { font-family: var(--font-head); display: flex; flex-direction: column; gap: 10px; }
+.card-meta .number { font-size: 3rem; color: #333; }
+.card-meta .label { font-size: 0.8rem; letter-spacing: 2px; writing-mode: vertical-rl; transform: rotate(180deg); }
+
+/* 7. Signature / Footer */
+.signature {
+    padding: 150px 0; text-align: center; position: relative; overflow: hidden;
+}
+.outlined-text {
+    font-family: var(--font-head); font-size: 15vw; opacity: 0.1;
+    -webkit-text-stroke: 1px #fff; color: transparent; line-height: 1;
+}
+.cta-circle {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 150px; height: 150px; border: 1px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    background: var(--bg); transition: 0.4s; z-index: 10;
+}
+.cta-circle span { font-size: 0.8rem; letter-spacing: 2px; font-weight: 600; }
+.cta-circle:hover { background: var(--gold); color: #000; transform: translate(-50%, -50%) scale(1.2); }
+
+footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
+.footer-content { display: flex; justify-content: space-between; color: #666; font-size: 0.8rem; }
+.f-links a { margin-right: 20px; color: #666; }
+.f-links a:hover { color: var(--gold); }
+
+/* Mobil */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .menu-btn { display: block; }
+    .hero-headline { font-size: 12vw; }
+    .hero-headline .indent { margin-left: 20px; }
+    .product-card { width: 100%; flex-direction: column !important; gap: 20px; margin-left: 0 !important; }
+    .img-box { height: 400px; }
+    .card-meta { flex-direction: row; align-items: center; }
+    .card-meta .label { writing-mode: horizontal-tb; transform: none; }
+    .cta-circle { width: 100px; height: 100px; font-size: 0.7rem; }
+}
+/* --- EK SAYFA STILLERI --- */
+
+/* Ortak Sayfa Başlıkları */
+.page-header {
+    padding: 150px 20px 80px; text-align: center;
+}
+.page-header h1 {
+    font-family: var(--font-head); font-size: 3.5rem; color: #fff; margin-bottom: 10px;
+}
+.subtitle { color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
+
+/* Koleksiyon Grid (Ayakkabı/Çanta) */
+.collection-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 60px; padding: 0 5vw 100px;
+}
+.collection-item {
+    background: var(--surface); border: 1px solid #222; transition: 0.4s;
+}
+.item-image {
+    height: 400px; width: 100%; position: relative; overflow: hidden;
+}
+.item-image img { transition: 0.6s; }
+.collection-item:hover .item-image img { transform: scale(1.1); opacity: 0.6; }
+
+/* Hover Overlay Buton */
+.hover-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; transition: 0.4s;
+}
+.collection-item:hover .hover-overlay { opacity: 1; }
+
+.item-info { padding: 25px; text-align: center; }
+.item-info h3 { font-family: var(--font-head); font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
+.item-info .desc { font-size: 0.9rem; color: #888; margin-bottom: 15px; }
+.item-info .price { color: var(--gold); font-weight: bold; font-size: 1.2rem; }
+
+/* Login Sayfası */
+.login-page { background: var(--bg); overflow: hidden; height: 100vh; }
+.login-container {
+    height: 100%; display: flex; justify-content: center; align-items: center;
+}
+.login-box {
+    background: var(--surface); padding: 60px; width: 450px;
+    border: 1px solid var(--gold); text-align: center; position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+.input-group { position: relative; margin-bottom: 40px; }
+.input-group input {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid #444;
+    color: #fff; padding: 10px 0; font-family: var(--font-body); font-size: 1rem;
+}
+.input-group input:focus { outline: none; border-bottom-color: var(--gold); }
+.full-width { width: 100%; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
+.error-msg { color: #ff4d4d; margin-bottom: 20px; font-size: 0.9rem; }
+
+/* Offers Sayfası */
+.offers-grid { display: grid; gap: 40px; max-width: 800px; margin: 0 auto; }
+.offer-card {
+    background: var(--surface); padding: 40px; border-left: 3px solid var(--gold);
+    color: #ccc; position: relative;
+}
+.offer-card h3 { font-family: var(--font-head); font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
+.offer-divider { width: 50px; height: 1px; background: var(--gold); margin: 20px 0; }
+.offer-tag {
+    position: absolute; top: 20px; right: 20px; color: var(--gold);
+    font-size: 0.7rem; text-transform: uppercase; border: 1px solid var(--gold);
+    padding: 5px 10px;
+}
+
+/* Mobil Uyum */
+@media (max-width: 768px) {
+    .collection-grid { grid-template-columns: 1fr; padding: 0 20px 100px; }
+    .page-header h1 { font-size: 2.5rem; }
+    .login-box { width: 90%; padding: 40px; }
+}
