@@ -25,6 +25,21 @@ def admin_required(f):
 def index():
     return render_template('index.html')
 
+
+@app.route('/offers')
+def offers_page():
+    return render_template('offers.html')
+
+
+@app.route('/ayakkabi')
+def ayakkabi_page():
+    return render_template('shoes.html')
+
+
+@app.route('/canta')
+def canta_page():
+    return render_template('bags.html')
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
