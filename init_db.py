@@ -25,9 +25,10 @@ def init_db():
         is_offer INTEGER DEFAULT 0
     )''')
     # default admin (change password after first run)
+    # create default admin with a compatible hash method
     try:
-        cur.execute('INSERT INTO admin_users (username,password_hash) VALUES (?,?)',
-                    ('admin', generate_password_hash('adminpass')))
+        cur.execute('INSERT OR IGNORE INTO admin_users (username,password_hash) VALUES (?,?)',
+                    ('admin', generate_password_hash('adminpass', method='pbkdf2:sha256')))
     except Exception:
         pass
     # categories
