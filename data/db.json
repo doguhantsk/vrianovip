@@ -1,0 +1,27 @@
+{
+  "site": {
+    "title": "Showroom",
+    "description": "Showroom site",
+    "whatsapp": "",
+    "location": "",
+    "mail_to": "",
+    "seo": {
+      "home": {
+        "title": "Showroom",
+        "description": "Welcome to our showroom"
+      },
+      "about": {
+        "title": "About Us",
+        "description": "About"
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "content": "<h2>Welcome</h2><p>Showroom home content</p>"
+    },
+    "about": {
+      "content": "<p>About us</p>"
+    }
+  }
+}
