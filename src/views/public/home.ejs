@@ -1,6 +1,12 @@
-<%- include('../layout', { site: site, seo: seo, body: (function(){ %>
+<%
+  var body = function(){
+%>
   <div>
     <h1><%= site.title %></h1>
     <div><%- page.content %></div>
   </div>
-<% }).call(this) }) %>
+<%
+  }
+%>
+
+<%- include('../layout', { site: site, seo: seo, body: body }) %>

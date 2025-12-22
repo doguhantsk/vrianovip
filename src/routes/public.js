@@ -6,7 +6,10 @@ router.get('/', (req, res) => {
   const site = req.db.data.site
   const home = req.db.data.pages.home || { content: '' }
   const seo = site.seo && site.seo.home ? site.seo.home : { title: site.title, description: site.description }
-  res.render('public/home', { site, page: home, seo })
+  req.app.render('public/_home_content', { site, page: home }, (err, html) => {
+    if (err) return res.status(500).send('Template render error')
+    res.render('layout', { site, seo, body: html })
+  })
 })
 
 router.get('/about', (req, res) => {

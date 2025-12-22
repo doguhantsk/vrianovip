@@ -16,7 +16,11 @@
     </nav>
 
     <div class="container">
-      <%- body %>
+      <% if (typeof body === 'function') { %>
+        <%- body() %>
+      <% } else { %>
+        <%- body %>
+      <% } %>
     </div>
 
     <% if (site.whatsapp) { %>
