@@ -58,3 +58,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+// 5. MOBİL MENÜ KONTROLÜ (YENİ EKLENDİ)
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const brandLogo = document.querySelector('.brand');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            // Menüyü aç/kapat
+            navLinks.classList.toggle('active');
+            
+            // Buton yazısını değiştir
+            if (navLinks.classList.contains('active')) {
+                menuBtn.textContent = 'KAPAT';
+                menuBtn.style.color = '#fff'; // Açıkken beyaz olsun
+                if(brandLogo) brandLogo.style.color = '#fff';
+            } else {
+                menuBtn.textContent = 'MENU';
+                menuBtn.style.color = ''; // Varsayılan renge dön
+                if(brandLogo) brandLogo.style.color = '';
+            }
+        });
+
+        // Menüdeki bir linke tıklanırsa menüyü kapat (Sayfa içi linkler için)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.textContent = 'MENU';
+            });
+        });
+    }

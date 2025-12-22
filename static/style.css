@@ -158,16 +158,78 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
 .f-links a:hover { color: var(--gold); }
 
 /* Mobil */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .menu-btn { display: block; }
-    .hero-headline { font-size: 12vw; }
-    .hero-headline .indent { margin-left: 20px; }
-    .product-card { width: 100%; flex-direction: column !important; gap: 20px; margin-left: 0 !important; }
-    .img-box { height: 400px; }
-    .card-meta { flex-direction: row; align-items: center; }
-    .card-meta .label { writing-mode: horizontal-tb; transform: none; }
-    .cta-circle { width: 100px; height: 100px; font-size: 0.7rem; }
+/* --- MOBİL UYUMLULUK GÜNCELLEMESİ --- */
+
+@media (max-width: 900px) {
+    /* 1. Header & Mobil Menü */
+    .navbar { padding: 20px; }
+    .nav-links {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background-color: var(--bg);
+        flex-direction: column; justify-content: center; align-items: center;
+        gap: 30px; z-index: 998; /* Logonun altında kalsın */
+        transform: translateY(-100%); /* Varsayılan olarak gizle (yukarıda) */
+        transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        border-bottom: 1px solid var(--gold);
+    }
+    
+    /* Menü açıldığında */
+    .nav-links.active { transform: translateY(0); }
+
+    .menu-btn {
+        display: block; position: relative; z-index: 999;
+        font-family: var(--font-head); letter-spacing: 2px;
+        color: var(--gold); cursor: pointer; font-size: 0.9rem;
+    }
+    
+    .brand { z-index: 999; position: relative; } /* Logo hep üstte */
+
+    /* 2. Hero Bölümü */
+    .hero-headline { font-size: 13vw; margin-bottom: 20px; }
+    .hero-headline .indent { margin-left: 0; display: block; }
+    .tagline { font-size: 0.7rem; }
+    
+    /* 3. Kartlar ve Showcase */
+    .showcase { padding: 80px 20px; gap: 80px; }
+    .product-card {
+        width: 100%; flex-direction: column !important;
+        margin-left: 0 !important; gap: 15px;
+    }
+    .img-box { height: 450px; }
+    
+    .card-meta {
+        flex-direction: row; width: 100%; justify-content: space-between;
+        align-items: center; border-bottom: 1px solid #222; padding-bottom: 10px;
+    }
+    .card-meta .label {
+        writing-mode: horizontal-tb; transform: none; font-size: 0.7rem;
+    }
+    .card-meta .number { font-size: 2rem; }
+
+    /* 4. Manifesto & Yazılar */
+    .manifesto-section { padding: 80px 20px; }
+    .manifesto-section p { font-size: 1.5rem; }
+    
+    /* 5. Koleksiyon Grid (Ayakkabı/Çanta Sayfaları) */
+    .collection-grid {
+        grid-template-columns: 1fr; /* Tek sütun */
+        gap: 40px; padding: 0 20px 80px;
+    }
+    .page-header h1 { font-size: 2.5rem; }
+
+    /* 6. Admin Paneli Mobili */
+    .admin-container {
+        grid-template-columns: 1fr; padding: 20px; gap: 30px;
+    }
+    .admin-sidebar {
+        position: relative; top: 0; width: 100%; padding: 20px;
+    }
+    .table-wrapper { overflow-x: auto; } /* Tablo taşarsa kaydır */
+    .admin-table th, .admin-table td { font-size: 0.8rem; padding: 10px; }
+    .search-box { width: 100%; }
+    
+    /* 7. Login Kutusu */
+    .login-box { width: 100%; padding: 30px; border: none; }
 }
 /* --- EK SAYFA STILLERI --- */
 
