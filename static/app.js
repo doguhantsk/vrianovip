@@ -4,28 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const introOverlay = document.querySelector('.intro-overlay');
     setTimeout(() => {
         introOverlay.classList.add('hide');
-    }, 2500); // 2.5 saniye sonra perde kalkar
+    }, 2200); // 2.2 saniye sonra perde kalkar
 
-    // 2. Mouse Spot Işığı & İmleç Takibi
-    const glow = document.querySelector('.cursor-glow');
-    
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        
-        // Glow efekti (biraz gecikmeli takip eder)
-        glow.style.left = x + 'px';
-        glow.style.top = y + 'px';
+ 
 
-        // CSS değişkenlerini güncelle (özel cursor için)
-        document.body.style.setProperty('--cursor-x', x + 'px');
-        document.body.style.setProperty('--cursor-y', y + 'px');
-    });
-
-    // 3. Scroll Animasyonları (Reveal)
-    const observerOptions = {
-        threshold: 0.2
-    };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
