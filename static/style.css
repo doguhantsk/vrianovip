@@ -1,15 +1,15 @@
-/* --- MIDNIGHT LUXURY STYLE --- */
+/* --- MIDNIGHT LUXURY STYLE (NO CURSOR ANIMATION) --- */
 
 :root {
-    --bg: #050505;        /* Derin Siyah */
-    --surface: #0f0f0f;   /* Koyu Antrasit */
-    --text: #e0e0e0;      /* Kırık Beyaz */
-    --gold: #d4af37;      /* Lüks Altın */
+    --bg: #050505;
+    --surface: #0f0f0f;
+    --text: #e0e0e0;
+    --gold: #d4af37;
     --font-head: 'Prata', serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; cursor: none; /* Özel cursor için */ }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg);
@@ -26,7 +26,7 @@ img { width: 100%; height: 100%; object-fit: cover; display: block; }
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: #000; z-index: 9999;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1) 2s; /* 2sn bekle sonra yukarı kay */
+    transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1) 2s;
 }
 .intro-title {
     font-family: var(--font-head); font-size: 4rem; color: var(--gold); letter-spacing: 10px;
@@ -41,23 +41,7 @@ img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @keyframes fadeIn { to { opacity: 1; } }
 @keyframes growLine { to { width: 100px; } }
 
-/* 2. Cursor Glow (Spot Işığı) */
-.cursor-glow {
-    position: fixed; width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(0,0,0,0) 70%);
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%, -50%); mix-blend-mode: screen;
-}
-/* Standart cursor yerine küçük bir nokta ekleyelim */
-body::after {
-    content: ''; position: fixed; top:0; left:0; width: 8px; height: 8px;
-    background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 10000;
-    transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
-    mix-blend-mode: difference;
-    left: var(--cursor-x, -100px); top: var(--cursor-y, -100px);
-}
-
-/* 3. Navbar */
+/* 2. Navbar */
 .navbar {
     position: fixed; top: 0; width: 100%; padding: 30px 60px;
     display: flex; justify-content: space-between; align-items: center;
@@ -70,14 +54,14 @@ body::after {
 .btn-gold:hover { background: var(--gold); color: #000; }
 .menu-btn { display: none; }
 
-/* 4. Hero Section */
+/* 3. Hero Section */
 .hero {
     height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
     overflow: hidden;
 }
 .hero-bg {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-    opacity: 0.6; /* Resmi karart */
+    opacity: 0.6;
 }
 .hero-bg img { transform: scale(1.1); transition: transform 10s; }
 .hero:hover .hero-bg img { transform: scale(1); }
@@ -97,7 +81,7 @@ body::after {
 }
 .line-drop { width: 1px; height: 60px; background: rgba(255,255,255,0.3); }
 
-/* 5. Manifesto */
+/* 4. Manifesto */
 .manifesto-section { padding: 150px 20px; text-align: center; display: flex; justify-content: center; }
 .manifesto-section p {
     font-family: var(--font-head); font-size: 2.5rem; max-width: 900px; line-height: 1.4;
@@ -105,7 +89,7 @@ body::after {
 }
 .manifesto-section p:hover { color: #fff; }
 
-/* 6. Showcase Cards */
+/* 5. Showcase Cards */
 .showcase {
     padding: 100px 10vw; display: flex; flex-direction: column; gap: 150px;
 }
@@ -135,7 +119,7 @@ body::after {
 .card-meta .number { font-size: 3rem; color: #333; }
 .card-meta .label { font-size: 0.8rem; letter-spacing: 2px; writing-mode: vertical-rl; transform: rotate(180deg); }
 
-/* 7. Signature / Footer */
+/* 6. Signature / Footer */
 .signature {
     padding: 150px 0; text-align: center; position: relative; overflow: hidden;
 }
@@ -157,244 +141,97 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
 .f-links a { margin-right: 20px; color: #666; }
 .f-links a:hover { color: var(--gold); }
 
-/* Mobil */
-/* --- MOBİL UYUMLULUK GÜNCELLEMESİ --- */
-
-@media (max-width: 900px) {
-    /* 1. Header & Mobil Menü */
-    .navbar { padding: 20px; }
-    .nav-links {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-        background-color: var(--bg);
-        flex-direction: column; justify-content: center; align-items: center;
-        gap: 30px; z-index: 998; /* Logonun altında kalsın */
-        transform: translateY(-100%); /* Varsayılan olarak gizle (yukarıda) */
-        transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-        border-bottom: 1px solid var(--gold);
-    }
-    
-    /* Menü açıldığında */
-    .nav-links.active { transform: translateY(0); }
-
-    .menu-btn {
-        display: block; position: relative; z-index: 999;
-        font-family: var(--font-head); letter-spacing: 2px;
-        color: var(--gold); cursor: pointer; font-size: 0.9rem;
-    }
-    
-    .brand { z-index: 999; position: relative; } /* Logo hep üstte */
-
-    /* 2. Hero Bölümü */
-    .hero-headline { font-size: 13vw; margin-bottom: 20px; }
-    .hero-headline .indent { margin-left: 0; display: block; }
-    .tagline { font-size: 0.7rem; }
-    
-    /* 3. Kartlar ve Showcase */
-    .showcase { padding: 80px 20px; gap: 80px; }
-    .product-card {
-        width: 100%; flex-direction: column !important;
-        margin-left: 0 !important; gap: 15px;
-    }
-    .img-box { height: 450px; }
-    
-    .card-meta {
-        flex-direction: row; width: 100%; justify-content: space-between;
-        align-items: center; border-bottom: 1px solid #222; padding-bottom: 10px;
-    }
-    .card-meta .label {
-        writing-mode: horizontal-tb; transform: none; font-size: 0.7rem;
-    }
-    .card-meta .number { font-size: 2rem; }
-
-    /* 4. Manifesto & Yazılar */
-    .manifesto-section { padding: 80px 20px; }
-    .manifesto-section p { font-size: 1.5rem; }
-    
-    /* 5. Koleksiyon Grid (Ayakkabı/Çanta Sayfaları) */
-    .collection-grid {
-        grid-template-columns: 1fr; /* Tek sütun */
-        gap: 40px; padding: 0 20px 80px;
-    }
-    .page-header h1 { font-size: 2.5rem; }
-
-    /* 6. Admin Paneli Mobili */
-    .admin-container {
-        grid-template-columns: 1fr; padding: 20px; gap: 30px;
-    }
-    .admin-sidebar {
-        position: relative; top: 0; width: 100%; padding: 20px;
-    }
-    .table-wrapper { overflow-x: auto; } /* Tablo taşarsa kaydır */
-    .admin-table th, .admin-table td { font-size: 0.8rem; padding: 10px; }
-    .search-box { width: 100%; }
-    
-    /* 7. Login Kutusu */
-    .login-box { width: 100%; padding: 30px; border: none; }
-}
-/* --- EK SAYFA STILLERI --- */
-
-/* Ortak Sayfa Başlıkları */
-.page-header {
-    padding: 150px 20px 80px; text-align: center;
-}
-.page-header h1 {
-    font-family: var(--font-head); font-size: 3.5rem; color: #fff; margin-bottom: 10px;
-}
+/* --- EK SAYFALAR İÇİN (Admin, Login vb.) --- */
+.page-header { padding: 150px 20px 80px; text-align: center; }
+.page-header h1 { font-family: var(--font-head); font-size: 3.5rem; color: #fff; margin-bottom: 10px; }
 .subtitle { color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
 
-/* Koleksiyon Grid (Ayakkabı/Çanta) */
-.collection-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 60px; padding: 0 5vw 100px;
-}
-.collection-item {
-    background: var(--surface); border: 1px solid #222; transition: 0.4s;
-}
-.item-image {
-    height: 400px; width: 100%; position: relative; overflow: hidden;
-}
+.collection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 60px; padding: 0 5vw 100px; }
+.collection-item { background: var(--surface); border: 1px solid #222; transition: 0.4s; }
+.item-image { height: 400px; width: 100%; position: relative; overflow: hidden; }
 .item-image img { transition: 0.6s; }
 .collection-item:hover .item-image img { transform: scale(1.1); opacity: 0.6; }
-
-/* Hover Overlay Buton */
-.hover-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    display: flex; justify-content: center; align-items: center;
-    opacity: 0; transition: 0.4s;
-}
+.hover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0; transition: 0.4s; }
 .collection-item:hover .hover-overlay { opacity: 1; }
-
 .item-info { padding: 25px; text-align: center; }
 .item-info h3 { font-family: var(--font-head); font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
 .item-info .desc { font-size: 0.9rem; color: #888; margin-bottom: 15px; }
 .item-info .price { color: var(--gold); font-weight: bold; font-size: 1.2rem; }
 
-/* Login Sayfası */
+/* Login */
 .login-page { background: var(--bg); overflow: hidden; height: 100vh; }
-.login-container {
-    height: 100%; display: flex; justify-content: center; align-items: center;
-}
-.login-box {
-    background: var(--surface); padding: 60px; width: 450px;
-    border: 1px solid var(--gold); text-align: center; position: relative;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
+.login-container { height: 100%; display: flex; justify-content: center; align-items: center; }
+.login-box { background: var(--surface); padding: 60px; width: 450px; border: 1px solid var(--gold); text-align: center; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
 .input-group { position: relative; margin-bottom: 40px; }
-.input-group input {
-    width: 100%; background: transparent; border: none; border-bottom: 1px solid #444;
-    color: #fff; padding: 10px 0; font-family: var(--font-body); font-size: 1rem;
-}
+.input-group input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #444; color: #fff; padding: 10px 0; font-family: var(--font-body); font-size: 1rem; }
 .input-group input:focus { outline: none; border-bottom-color: var(--gold); }
 .full-width { width: 100%; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
 .error-msg { color: #ff4d4d; margin-bottom: 20px; font-size: 0.9rem; }
 
-/* Offers Sayfası */
-.offers-grid { display: grid; gap: 40px; max-width: 800px; margin: 0 auto; }
-.offer-card {
-    background: var(--surface); padding: 40px; border-left: 3px solid var(--gold);
-    color: #ccc; position: relative;
-}
-.offer-card h3 { font-family: var(--font-head); font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
-.offer-divider { width: 50px; height: 1px; background: var(--gold); margin: 20px 0; }
-.offer-tag {
-    position: absolute; top: 20px; right: 20px; color: var(--gold);
-    font-size: 0.7rem; text-transform: uppercase; border: 1px solid var(--gold);
-    padding: 5px 10px;
-}
-
-/* Mobil Uyum */
-@media (max-width: 768px) {
-    .collection-grid { grid-template-columns: 1fr; padding: 0 20px 100px; }
-    .page-header h1 { font-size: 2.5rem; }
-    .login-box { width: 90%; padding: 40px; }
-}
-/* --- ADMIN PANEL STYLES --- */
-
-/* Navbar Ayarı */
-.admin-nav {
-    background: var(--surface); border-bottom: 1px solid #222;
-    padding: 15px 40px; position: sticky;
-}
+/* Admin Panel */
+.admin-nav { background: var(--surface); border-bottom: 1px solid #222; padding: 15px 40px; position: sticky; }
 .brand-small { font-family: var(--font-head); letter-spacing: 2px; color: var(--gold); font-weight: bold; }
-.btn-gold-sm {
-    border: 1px solid var(--gold); padding: 5px 15px; font-size: 0.7rem; 
-    color: var(--gold); text-transform: uppercase; letter-spacing: 1px;
-}
+.btn-gold-sm { border: 1px solid var(--gold); padding: 5px 15px; font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
 .btn-gold-sm:hover { background: var(--gold); color: #000; }
-
-/* Layout */
-.admin-container {
-    display: grid; grid-template-columns: 350px 1fr; gap: 40px;
-    padding: 40px; min-height: 100vh;
-    align-items: start;
-}
-
-/* Sidebar & Form */
-.admin-sidebar {
-    background: var(--surface); border: 1px solid #333;
-    padding: 30px; position: sticky; top: 100px;
-    border-radius: 4px;
-}
+.admin-container { display: grid; grid-template-columns: 350px 1fr; gap: 40px; padding: 40px; min-height: 100vh; align-items: start; }
+.admin-sidebar { background: var(--surface); border: 1px solid #333; padding: 30px; position: sticky; top: 100px; border-radius: 4px; }
 .sidebar-header h3 { font-family: var(--font-head); color: #fff; margin-bottom: 5px; }
-.sidebar-header p { color: #666; font-size: 0.8rem; margin-bottom: 20px; }
-
 .category-tabs { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 15px; }
-.tab-btn {
-    background: transparent; border: none; color: #666; cursor: pointer;
-    font-family: var(--font-body); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
-    padding: 5px 0; transition: 0.3s;
-}
+.tab-btn { background: transparent; border: none; color: #666; cursor: pointer; font-family: var(--font-body); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; padding: 5px 0; transition: 0.3s; }
 .tab-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
-
 .admin-form label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 5px; }
 .admin-form .input-group { margin-bottom: 20px; }
-.admin-form textarea {
-    width: 100%; background: transparent; border: 1px solid #444; color: #fff; padding: 10px;
-    font-family: var(--font-body); resize: vertical;
-}
-.admin-form textarea:focus { outline: none; border-color: var(--gold); }
-
-/* Content & Table */
-.content-header {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-}
+.admin-form textarea { width: 100%; background: transparent; border: 1px solid #444; color: #fff; padding: 10px; font-family: var(--font-body); resize: vertical; }
+.content-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .content-header h2 { font-family: var(--font-head); color: var(--gold); }
-
-.search-box {
-    position: relative; width: 300px;
-}
-.search-box input {
-    width: 100%; background: transparent; border: 1px solid #333; padding: 10px 10px 10px 40px;
-    color: #fff; border-radius: 50px;
-}
+.search-box { position: relative; width: 300px; }
+.search-box input { width: 100%; background: transparent; border: 1px solid #333; padding: 10px 10px 10px 40px; color: #fff; border-radius: 50px; }
 .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666; }
-
-.table-wrapper {
-    background: var(--surface); border: 1px solid #333; border-radius: 4px; overflow: hidden;
-}
+.table-wrapper { background: var(--surface); border: 1px solid #333; border-radius: 4px; overflow: hidden; }
 .admin-table { width: 100%; border-collapse: collapse; text-align: left; }
-.admin-table th {
-    background: #1a1a1a; color: var(--gold); padding: 15px; font-weight: normal;
-    font-family: var(--font-head); letter-spacing: 1px; font-size: 0.9rem;
-}
-.admin-table td {
-    padding: 15px; border-bottom: 1px solid #222; color: #ccc; vertical-align: middle;
-}
+.admin-table th { background: #1a1a1a; color: var(--gold); padding: 15px; font-weight: normal; font-family: var(--font-head); letter-spacing: 1px; font-size: 0.9rem; }
+.admin-table td { padding: 15px; border-bottom: 1px solid #222; color: #ccc; vertical-align: middle; }
 .admin-table tr:hover { background: rgba(255,255,255,0.02); }
-.admin-table img {
-    width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #333;
-}
-
-/* Action Buttons */
-.action-btn {
-    background: transparent; border: none; cursor: pointer; font-size: 1rem; margin-right: 10px; transition: 0.3s;
-}
-.action-btn.edit { color: #4a90e2; }
+.admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #333; }
+.action-btn { background: transparent; border: none; cursor: pointer; font-size: 1rem; margin-right: 10px; transition: 0.3s; }
 .action-btn.delete { color: #e24a4a; }
-.action-btn:hover { transform: scale(1.2); }
 
-/* Mobil Uyum */
+/* MOBİL UYUMLULUK */
 @media (max-width: 900px) {
-    .admin-container { grid-template-columns: 1fr; }
-    .admin-sidebar { position: relative; top: 0; }
+    .navbar { padding: 20px; }
+    .nav-links {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background-color: var(--bg);
+        flex-direction: column; justify-content: center; align-items: center;
+        gap: 30px; z-index: 998;
+        transform: translateY(-100%);
+        transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        border-bottom: 1px solid var(--gold);
+    }
+    .nav-links.active { transform: translateY(0); }
+    .menu-btn {
+        display: block; position: relative; z-index: 999;
+        font-family: var(--font-head); letter-spacing: 2px;
+        color: var(--gold); cursor: pointer; font-size: 0.9rem;
+    }
+    .brand { z-index: 999; position: relative; }
+    .hero-headline { font-size: 13vw; margin-bottom: 20px; }
+    .hero-headline .indent { margin-left: 0; display: block; }
+    .tagline { font-size: 0.7rem; }
+    .showcase { padding: 80px 20px; gap: 80px; }
+    .product-card { width: 100%; flex-direction: column !important; margin-left: 0 !important; gap: 15px; }
+    .img-box { height: 450px; }
+    .card-meta { flex-direction: row; width: 100%; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 10px; }
+    .card-meta .label { writing-mode: horizontal-tb; transform: none; font-size: 0.7rem; }
+    .card-meta .number { font-size: 2rem; }
+    .manifesto-section { padding: 80px 20px; }
+    .manifesto-section p { font-size: 1.5rem; }
+    .collection-grid { grid-template-columns: 1fr; padding: 0 20px 80px; }
+    .page-header h1 { font-size: 2.5rem; }
+    .admin-container { grid-template-columns: 1fr; padding: 20px; gap: 30px; }
+    .admin-sidebar { position: relative; top: 0; width: 100%; padding: 20px; }
+    .table-wrapper { overflow-x: auto; }
+    .admin-table th, .admin-table td { font-size: 0.8rem; padding: 10px; }
+    .search-box { width: 100%; }
+    .login-box { width: 100%; padding: 30px; border: none; }
 }

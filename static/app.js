@@ -2,12 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // 1. İntro Animasyon Kontrolü
     const introOverlay = document.querySelector('.intro-overlay');
-    setTimeout(() => {
-        introOverlay.classList.add('hide');
-    }, 2200); // 2.2 saniye sonra perde kalkar
+    if (introOverlay) {
+        setTimeout(() => {
+            introOverlay.classList.add('hide');
+        }, 2500); // 2.5 saniye sonra perde kalkar
+    }
 
- 
-
+    // 2. Scroll Animasyonları (Reveal)
+    const observerOptions = {
+        threshold: 0.2
+    };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -28,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // 4. Parallax Etkisi (Kartlar kaydırıldıkça farklı hızda hareket eder)
+    // 3. Parallax Etkisi (Kartlar kaydırıldıkça farklı hızda hareket eder)
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         const cards = document.querySelectorAll('.parallax-card');
@@ -39,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
             card.style.transform = `translateY(${scrolled * speed * -0.2}px)`;
         });
     });
-});
-// 5. MOBİL MENÜ KONTROLÜ (YENİ EKLENDİ)
+
+    // 4. MOBİL MENÜ KONTROLÜ
     const menuBtn = document.querySelector('.menu-btn');
     const navLinks = document.querySelector('.nav-links');
     const brandLogo = document.querySelector('.brand');
@@ -53,16 +57,16 @@ document.addEventListener("DOMContentLoaded", () => {
             // Buton yazısını değiştir
             if (navLinks.classList.contains('active')) {
                 menuBtn.textContent = 'KAPAT';
-                menuBtn.style.color = '#fff'; // Açıkken beyaz olsun
+                menuBtn.style.color = '#fff'; 
                 if(brandLogo) brandLogo.style.color = '#fff';
             } else {
                 menuBtn.textContent = 'MENU';
-                menuBtn.style.color = ''; // Varsayılan renge dön
+                menuBtn.style.color = ''; 
                 if(brandLogo) brandLogo.style.color = '';
             }
         });
 
-        // Menüdeki bir linke tıklanırsa menüyü kapat (Sayfa içi linkler için)
+        // Menüdeki bir linke tıklanırsa menüyü kapat
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -70,3 +74,4 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+});
