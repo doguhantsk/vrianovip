@@ -345,3 +345,15 @@
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 949-753-090
+Traceback (most recent call last):
+  File "/Users/doguhantaskin/Desktop/vrianovip/app.py", line 114, in <module>
+    app.run(debug=True)
+  File "/Users/doguhantaskin/Desktop/vrianovip/.venv/lib/python3.9/site-packages/flask/app.py", line 662, in run
+    run_simple(t.cast(str, host), port, self, **options)
+  File "/Users/doguhantaskin/Desktop/vrianovip/.venv/lib/python3.9/site-packages/werkzeug/serving.py", line 1115, in run_simple
+    run_with_reloader(
+  File "/Users/doguhantaskin/Desktop/vrianovip/.venv/lib/python3.9/site-packages/werkzeug/_reloader.py", line 453, in run_with_reloader
+    ensure_echo_on()
+  File "/Users/doguhantaskin/Desktop/vrianovip/.venv/lib/python3.9/site-packages/werkzeug/_reloader.py", line 433, in ensure_echo_on
+    termios.tcsetattr(sys.stdin, termios.TCSANOW, attributes)
+termios.error: (4, 'Interrupted system call')
