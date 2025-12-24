@@ -235,3 +235,58 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
     .search-box { width: 100%; }
     .login-box { width: 100%; padding: 30px; border: none; }
 }
+/* --- ÜRÜN İNCELEME PENCERESİ (MODAL) --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Arka planı karart */
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    backdrop-filter: blur(5px); /* Arka planı bulanıklaştır */
+}
+
+.modal-overlay.active {
+    opacity: 1; visibility: visible;
+}
+
+.modal-content {
+    background: #111; /* Koyu zemin */
+    border: 1px solid #d4af37; /* Altın çerçeve */
+    width: 90%; max-width: 900px;
+    position: relative;
+    transform: translateY(50px); transition: 0.4s ease;
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0); /* Yukarı kayarak açılma efekti */
+}
+
+.close-modal {
+    position: absolute; top: 15px; right: 20px;
+    background: none; border: none; color: #fff;
+    font-size: 2.5rem; cursor: pointer; z-index: 10;
+}
+.close-modal:hover { color: #d4af37; }
+
+.modal-body { display: flex; flex-wrap: wrap; }
+
+.modal-image { flex: 1; min-width: 300px; height: 500px; }
+.modal-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.modal-details {
+    flex: 1; min-width: 300px; padding: 50px;
+    display: flex; flex-direction: column; justify-content: center;
+}
+
+.modal-details h2 { font-family: 'Prata', serif; font-size: 2.2rem; color: #fff; margin-bottom: 10px; }
+.modal-price { font-size: 1.5rem; color: #d4af37; margin-bottom: 20px; }
+.separator-gold { width: 60px; height: 2px; background: #d4af37; margin-bottom: 25px; }
+.modal-details p { color: #ccc; line-height: 1.6; margin-bottom: 40px; }
+
+/* Mobilde alt alta al */
+@media (max-width: 768px) {
+    .modal-body { flex-direction: column; }
+    .modal-image { height: 300px; }
+    .modal-details { padding: 30px; }
+}

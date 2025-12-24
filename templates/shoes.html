@@ -23,16 +23,24 @@
     <main>
         <header class="page-header">
             <h1 class="reveal-text">Ayakkabı Koleksiyonu</h1>
-            <p class="subtitle">Her adımda bir imza.</p>
+            <p class="subtitle">Adımlarınıza asaleti fısıldayan tasarımlar.</p>
         </header>
 
         <section class="collection-grid">
             {% for shoe in shoes %}
             <article class="collection-item parallax-card">
                 <div class="item-image">
-                    <img src="{{ shoe.image if shoe.image else 'https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop' }}" alt="{{ shoe.name }}">
+                    {% set img_url = shoe.image if shoe.image else 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop' %}
+                    <img src="{{ img_url }}" alt="{{ shoe.name }}">
+                    
                     <div class="hover-overlay">
-                        <button class="btn-gold">İncele</button>
+                        <button class="btn-gold open-modal-btn" 
+                                data-title="{{ shoe.name }}"
+                                data-desc="{{ shoe.description }}"
+                                data-price="{{ shoe.price }}"
+                                data-image="{{ img_url }}">
+                            İncele
+                        </button>
                     </div>
                 </div>
                 <div class="item-info">
@@ -46,6 +54,36 @@
             {% endfor %}
         </section>
     </main>
+
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImg" src="" alt="Detay">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle">Ürün Başlığı</h2>
+                    <p class="modal-price" id="modalPrice">0.00 ₺</p>
+                    <div class="separator-gold"></div>
+                    <p id="modalDesc">Ürün açıklaması burada yer alacak.</p>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="color: #fff; display: block; margin-bottom: 10px;">Numara Seç:</label>
+                        <select style="background: #111; color: #fff; border: 1px solid #d4af37; padding: 10px; width: 100%;">
+                            <option>36</option>
+                            <option>37</option>
+                            <option>38</option>
+                            <option>39</option>
+                            <option>40</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-gold full-width">Sepete Ekle</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
