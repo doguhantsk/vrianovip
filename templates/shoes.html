@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VRIANO | Shoe Collection</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -32,7 +33,6 @@
                 <div class="item-image">
                     {% set img_url = shoe.image if shoe.image else 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop' %}
                     <img src="{{ img_url }}" alt="{{ shoe.name }}">
-                    
                     <div class="hover-overlay">
                         <button class="btn-gold open-modal-btn" 
                                 data-title="{{ shoe.name }}"
@@ -66,20 +66,19 @@
                     <h2 id="modalTitle">Ürün Başlığı</h2>
                     <p class="modal-price" id="modalPrice">0.00 ₺</p>
                     <div class="separator-gold"></div>
-                    <p id="modalDesc">Ürün açıklaması burada yer alacak.</p>
                     
-                    <div style="margin-bottom: 20px;">
-                        <label style="color: #fff; display: block; margin-bottom: 10px;">Numara Seç:</label>
-                        <select style="background: #111; color: #fff; border: 1px solid #d4af37; padding: 10px; width: 100%;">
-                            <option>36</option>
-                            <option>37</option>
-                            <option>38</option>
-                            <option>39</option>
-                            <option>40</option>
-                        </select>
+                    <p id="modalDesc">Ürün açıklaması...</p>
+                    
+                    <div style="margin-top: auto;">
+                        <p style="color: #888; font-size: 0.9rem; margin-bottom: 15px;">
+                            Bu ürünle ilgileniyor musunuz? Müşteri temsilcimizle iletişime geçin.
+                        </p>
+                        
+                        <a id="whatsappBtn" href="#" target="_blank" class="btn-gold full-width" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i>
+                            WhatsApp İle Sipariş Ver
+                        </a>
                     </div>
-
-                    <button class="btn-gold full-width">Sepete Ekle</button>
                 </div>
             </div>
         </div>
@@ -87,7 +86,7 @@
 
     <footer>
         <div class="footer-content">
-            <small>© 2025 VRIANO VIP. Tüm hakları saklıdır.</small>
+            <small>© 2025 VRIANO VIP.</small>
         </div>
     </footer>
 
