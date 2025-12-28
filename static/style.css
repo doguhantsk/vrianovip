@@ -314,21 +314,32 @@ body.hide-top-nav .navbar { display: none !important; }
 /* Mobile-specific modal adjustments */
 @media (max-width: 600px) {
     .modal-content {
-        width: 95%;
-        max-width: 420px;
+        width: 92%;
+        max-width: 380px;
         margin: 0 10px;
-        box-shadow: 0 0 30px rgba(0,0,0,0.6);
+        box-shadow: 0 0 20px rgba(0,0,0,0.6);
         border-radius: 8px;
         overflow: hidden;
+        padding: 0; /* reduce internal spacing from container level */
     }
     .modal-body { display: flex; flex-direction: column; }
-    .modal-image { flex: none; width: 100%; min-height: 180px; height: auto; }
+    .modal-image { flex: none; width: 100%; min-height: 150px; height: auto; }
     .modal-image img { width: 100%; height: auto; max-height: 55vh; object-fit: cover; }
-    .modal-details { flex: none; width: 100%; padding: 18px; box-sizing: border-box; }
-    .modal-details h2 { font-size: 1.25rem; margin-bottom: 8px; }
-    .modal-price { font-size: 1rem; }
+    .modal-details { flex: none; width: 100%; padding: 14px; box-sizing: border-box; }
+    .modal-details h2 { font-size: 1.1rem; margin-bottom: 6px; }
+    .modal-price { font-size: 0.95rem; }
     .separator-gold { width: 48px; }
-    .close-modal { font-size: 1.6rem; top: 8px; right: 10px; }
+    .close-modal { font-size: 1.4rem; top: 8px; right: 10px; }
+}
+
+/* Extra small phones: make modal even tighter */
+@media (max-width: 380px) {
+    .modal-content { max-width: 340px; width: 94%; }
+    .modal-image { min-height: 120px; }
+    .modal-details { padding: 12px; }
+    .modal-details h2 { font-size: 1rem; }
+    .modal-price { font-size: 0.9rem; }
+    .close-modal { font-size: 1.25rem; top: 6px; right: 8px; }
 }
 /* VRİANO PREMIUM MOBİL MENÜ SİSTEMİ */
 :root {
