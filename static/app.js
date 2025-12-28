@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModalBtn = document.querySelector('.close-modal');
     
     // Sitenizin WhatsApp Numarası (Başında + olmadan, ülke kodu ile: 905xxxxxxxxx)
-    const PHONE_NUMBER = "905555555555"; 
+    const PHONE_NUMBER = "+905531566448"; 
 
     const detailButtons = document.querySelectorAll('.open-modal-btn');
 
@@ -99,5 +99,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.body.style.overflow = 'auto';
             }
         });
+        
     }
+});
+// Mobilde daha erken tetiklenen animasyonlar
+const observerOptions = {
+    root: null,
+    threshold: 0.05, // Öğenin %5'i görünse bile animasyon başlasın
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            // Dokunmatik cihazlarda kart belirdiğinde hafif bir parlama efekti
+            entry.target.classList.add('mobile-reveal');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.product-card').forEach(card => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = "all 0.6s ease-out";
+    observer.observe(card);
 });
