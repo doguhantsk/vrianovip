@@ -30,72 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- MENÜ KONTROLÜ ---
-    const menuBtn = document.querySelector('.menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuBtn && navLinks) {
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuBtn.textContent = navLinks.classList.contains('active') ? 'KAPAT' : 'MENU';
-        });
-    }
-
-
-    // Keep only the first-used menu visible on mobile: top vs bottom
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuBtn = document.querySelector('.menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const bottomNav = document.querySelector('.mobile-bottom-nav');
-        let firstMenuUsed = null;
-
-        // Load persisted preference so the other navbar is hidden immediately on load
-        const persisted = localStorage.getItem('vriano_first_menu');
-        if (persisted === 'top') {
-            firstMenuUsed = 'top';
-            document.body.classList.add('hide-bottom-nav');
-        } else if (persisted === 'bottom') {
-            firstMenuUsed = 'bottom';
-            document.body.classList.add('hide-top-nav');
-        }
-
-        function setFirstUsed(kind) {
-            if (firstMenuUsed) return;
-            firstMenuUsed = kind;
-            try { localStorage.setItem('vriano_first_menu', kind); } catch (e) {}
-            if (kind === 'top') document.body.classList.add('hide-bottom-nav');
-            if (kind === 'bottom') document.body.classList.add('hide-top-nav');
-        }
-
-        if (menuBtn) {
-            menuBtn.addEventListener('click', () => setFirstUsed('top'), { once: true });
-        }
-
-        if (bottomNav) {
-            bottomNav.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => setFirstUsed('bottom'), { once: true });
-            });
-        }
-
-        // If nav-links gets activated by other scripts, treat it as top used
-        if (navLinks) {
-            const mo = new MutationObserver(muts => {
-                muts.forEach(m => {
-                    if (m.attributeName === 'class' && navLinks.classList.contains('active')) {
-                        setFirstUsed('top');
-                    }
-                });
-            });
-            mo.observe(navLinks, { attributes: true });
-        }
-
-        // Reset behavior on desktop resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 900) {
-                document.body.classList.remove('hide-bottom-nav', 'hide-top-nav');
-                firstMenuUsed = null;
-            }
-        });
-    });
+    // Menu behavior removed — navbars deleted from templates
     // --- WHATSAPP SİPARİŞ MODALI ---
     const modal = document.getElementById('productModal');
     const modalImg = document.getElementById('modalImg');
