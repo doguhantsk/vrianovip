@@ -1,23 +1,24 @@
-<nav class="site-navbar">
+<nav class="site-navbar" role="navigation" aria-label="Main Navigation">
   <div class="nav-inner container">
     <a href="/" class="brand">VRİANO</a>
 
-    <div class="links-desktop">
-      <a href="/ayakkabi">Koleksiyon</a>
-      <a href="/canta">Çantalar</a>
-      <a href="/offers">Fırsatlar</a>
+    <div class="links-desktop" role="menubar">
+      <a role="menuitem" href="/ayakkabi">Koleksiyon</a>
+      <a role="menuitem" href="/canta">Çantalar</a>
+      <a role="menuitem" href="/offers">Fırsatlar</a>
     </div>
 
-    <a href="https://wa.me/905531566448" class="nav-cta btn-gold">WhatsApp</a>
-
-    <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false">
-      <span class="hamburger"></span>
-    </button>
+    <div class="nav-actions">
+      <a href="https://wa.me/905531566448" class="nav-cta btn-gold">WhatsApp</a>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
 
   <div class="nav-panel" aria-hidden="true">
     <a href="/">Ana Sayfa</a>
-    <a href="/ayakkabi">Koleksiyon</a>
+    <a href="/ayakkabi">Ayakkabı</a>
     <a href="/canta">Çantalar</a>
     <a href="/offers">Fırsatlar</a>
     <a href="https://wa.me/905531566448" class="gold-text">WhatsApp</a>

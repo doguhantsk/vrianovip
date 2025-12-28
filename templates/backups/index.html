@@ -18,31 +18,8 @@
         <div class="intro-line"></div>
     </div>
 
-    <input type="checkbox" id="u-topbar__button" name="u-topbar__button" class="nav-check" style="display:none;">
-<input type="checkbox" id="u-mobile__button" name="u-mobile__button" class="nav-check" style="display:none;">
-
-<header class="v-header">
-    <div class="header-container">
-        <a href="/" class="brand">VRİANO</a>
-        
-        <label for="u-topbar__button" class="menu-label">
-            <span class="fa fa-bars icon-open"></span>
-            <span class="fa fa-times icon-close"></span>
-        </label>
-    </div>
-
-    
-    <div class="v-overlay-social">
-        <div class="social-btns">
-            <a href="https://wa.me/numaraniz" class="social-btn fa fa-whatsapp"></a>
-            <a href="https://instagram.com/vrianovip" class="social-btn fa fa-instagram"></a>
-        </div>
-    </div>
-
-    <label for="u-mobile__button" class="v-main-btn">
-        <span class="fa fa-plus plus-icon"></span>
-    </label>
-</header>
+    <!-- legacy header/nav removed -->
+    {% include '_navbar.html' %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -125,12 +102,7 @@
         </section>
 
     </main>
-<div class="mobile-bottom-nav">
-    <a href="/ayakkabi"><span>Koleksiyon</span></a>
-    <a href="/canta"><span>Çantalar</span></a>
-    <a href="/offers"><span>Fırsatlar</span></a>
-    <a href="https://wa.me/numaraniz" target="_blank"><span style="color: #c5a059;">WhatsApp</span></a>
-</div>
+<!-- mobile bottom nav removed; site uses unified navbar -->
     <footer>
         <div class="footer-content">
             <div class="f-links">
@@ -143,11 +115,4 @@
 
     <script src="/static/app.js"></script>
 </body>
-<div class="mobile-nav-bar">
-    <a href="/"><span>Ana Sayfa</span></a>
-    <a href="/ayakkabi"><span>Ayakkabı</span></a>
-    <a href="/canta"><span>Çanta</span></a>
-    <a href="/offers"><span>Fırsatlar</span></a>
-    <a href="https://wa.me/905XXXXXXXXX" target="_blank" style="color: #c5a059;"><span>WhatsApp</span></a>
-</div>
 </html>
