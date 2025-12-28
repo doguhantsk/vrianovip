@@ -330,3 +330,115 @@ body.hide-top-nav .navbar { display: none !important; }
     .separator-gold { width: 48px; }
     .close-modal { font-size: 1.6rem; top: 8px; right: 10px; }
 }
+/* --- Marquee Menu Temel Ayarları --- */
+.menu {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: #0a0a0a;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.menu--open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.menu__item {
+    position: relative;
+    padding: 1rem 0;
+    overflow: hidden;
+}
+
+.menu__item-link {
+    display: block;
+    text-align: center;
+    font-family: 'Prata', serif;
+    font-size: 8vw; /* Telefonda ve PC'de devasa durması için */
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    z-index: 10;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.menu__item-link:hover {
+    color: #c5a059; /* Üzerine gelince altın rengi */
+}
+
+/* Marquee (Kayan Yazı) Efekti */
+.marquee {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.menu__item:hover .marquee {
+    opacity: 0.15; /* Sadece hover olunca arka planda hayalet gibi görünür */
+}
+
+.marquee__inner {
+    width: fit-content;
+    display: flex;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    animation: marquee 15s linear infinite;
+}
+
+.marquee__inner span {
+    font-size: 10vw;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
+    padding: 0 2vw;
+}
+
+@keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Header ve Butonlar */
+.header-nav {
+    position: fixed;
+    top: 0; width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+.menu-trigger {
+    cursor: pointer;
+    width: 30px; height: 15px;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+
+.menu-trigger span { width: 100%; height: 2px; background: white; }
+
+.menu__close {
+    position: absolute;
+    top: 30px; right: 30px;
+    background: none; border: 1px solid #c5a059;
+    color: #c5a059; padding: 10px 20px;
+    cursor: pointer; font-family: 'Montserrat';
+}
+
+/* Mobil İyileştirme */
+@media (max-width: 768px) {
+    .menu__item-link { font-size: 12vw; }
+    .marquee__inner span { font-size: 15vw; }
+}

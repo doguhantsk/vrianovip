@@ -48,9 +48,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const bottomNav = document.querySelector('.mobile-bottom-nav');
         let firstMenuUsed = null;
 
+        // Load persisted preference so the other navbar is hidden immediately on load
+        const persisted = localStorage.getItem('vriano_first_menu');
+        if (persisted === 'top') {
+            firstMenuUsed = 'top';
+            document.body.classList.add('hide-bottom-nav');
+        } else if (persisted === 'bottom') {
+            firstMenuUsed = 'bottom';
+            document.body.classList.add('hide-top-nav');
+        }
+
         function setFirstUsed(kind) {
             if (firstMenuUsed) return;
             firstMenuUsed = kind;
+            try { localStorage.setItem('vriano_first_menu', kind); } catch (e) {}
             if (kind === 'top') document.body.classList.add('hide-bottom-nav');
             if (kind === 'bottom') document.body.classList.add('hide-top-nav');
         }
@@ -148,3 +159,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('open-menu');
+    const closeBtn = document.getElementById('close-menu');
+    const menuOverlay = document.querySelector('.menu');
+
+    if (openBtn) {
+        openBtn.addEventListener('click', () => {
+            menuOverlay.classList.add('menu--open');
+            document.body.style.overflow = 'hidden'; // Kaydırmayı engelle
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            menuOverlay.classList.remove('menu--open');
+            document.body.style.overflow = 'auto'; // Kaydırmayı aç
+        });
+    }
+
+    // Menü içindeki linklere tıklayınca menüyü kapat
+    document.querySelectorAll('.menu__item-link').forEach(link => {
+        link.addEventListener('click', () => {
+            menuOverlay.classList.remove('menu--open');
+            document.body.style.overflow = 'auto';
+        });
+    });
+});
