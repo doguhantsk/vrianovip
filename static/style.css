@@ -297,3 +297,107 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
 .separator-gold { width: 60px; height: 2px; background: #d4af37; margin-bottom: 25px; }
 .modal-details p { color: #ccc; line-height: 1.6; margin-bottom: 40px; }
 
+/* ============================================================
+   MOBİL VE TABLET UYUMLULUK (RESPONSIVE) AYARLARI
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* 1. Genel Font ve Boşluk Ayarları */
+    body {
+        font-size: 14px;
+    }
+
+    /* 2. Navbar Modernizasyonu (Mobilde daha kompakt) */
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .brand {
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+    }
+
+    .nav-links {
+        display: none; /* Standart menüyü gizle (Hamburger menü için) */
+    }
+
+    /* 3. Manifesto Bölümü (Yazıları küçültelim) */
+    .manifesto {
+        padding: 60px 20px;
+    }
+
+    .hero-headline {
+        font-size: 2.2rem; /* Mobilde çok büyük durmaması için */
+        line-height: 1.2;
+    }
+
+    /* 4. Showcase Grid Sistemi (Ürünleri 2'li sıra yapıyoruz) */
+    .showcase {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Ürünleri yan yana 2 tane diz */
+        gap: 12px;
+        padding: 15px;
+        perspective: none; /* Mobil performansı için perspektifi kapatıyoruz */
+    }
+
+    .product-card {
+        width: 100% !important; /* Kartların genişliğini eşitle */
+        margin: 0 !important;   /* Masaüstündeki sağ-sol kaymaları sıfırla */
+        transform: none !important;
+        position: relative;
+    }
+
+    .img-box {
+        height: 220px; /* Mobilde görseller daha kompakt olsun */
+    }
+
+    /* 5. Mobilde Fare Olmadığı İçin Fiyat Bilgisini Sabit Tutalım */
+    .overlay-info {
+        opacity: 1; 
+        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        height: auto;
+        padding: 10px;
+        bottom: 0;
+    }
+
+    .overlay-info h3 { font-size: 0.9rem; }
+    .overlay-info p { font-size: 0.8rem; }
+
+    /* 6. Mobil Alt Navigasyon (Instagram Tarzı) */
+    /* Kullanıcının baş parmağıyla sepet ve kategorilere ulaşması için */
+    .mobile-nav-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-around;
+        padding: 12px 0;
+        border-top: 1px solid rgba(197, 160, 89, 0.3);
+        z-index: 10000;
+    }
+
+    .mobile-nav-bar a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+/* Küçük telefonlar için ekstra ayar (iPhone SE vb.) */
+@media (max-width: 400px) {
+    .hero-headline {
+        font-size: 1.8rem;
+    }
+    .img-box {
+        height: 180px;
+    }
+}
