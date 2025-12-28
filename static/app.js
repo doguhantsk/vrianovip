@@ -159,30 +159,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const openBtn = document.getElementById('open-menu');
-    const closeBtn = document.getElementById('close-menu');
-    const menuOverlay = document.querySelector('.menu');
-
-    if (openBtn) {
-        openBtn.addEventListener('click', () => {
-            menuOverlay.classList.add('menu--open');
-            document.body.style.overflow = 'hidden'; // Kaydırmayı engelle
-        });
-    }
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            menuOverlay.classList.remove('menu--open');
-            document.body.style.overflow = 'auto'; // Kaydırmayı aç
-        });
-    }
-
-    // Menü içindeki linklere tıklayınca menüyü kapat
-    document.querySelectorAll('.menu__item-link').forEach(link => {
-        link.addEventListener('click', () => {
-            menuOverlay.classList.remove('menu--open');
-            document.body.style.overflow = 'auto';
-        });
-    });
-});
