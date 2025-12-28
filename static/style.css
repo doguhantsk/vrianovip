@@ -494,7 +494,7 @@ body.hide-top-nav .navbar { display: none !important; }
 /* New navbar styles (modern, compact) */
 .site-navbar { position: sticky; top: 0; left: 0; width: 100%; background: rgba(5,5,5,0.85); backdrop-filter: blur(4px); z-index: 10000; border-bottom: 1px solid rgba(255,255,255,0.03); }
 .site-navbar .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; max-width: 1200px; margin: 0 auto; }
-.site-navbar .brand { font-family: var(--font-head); color: var(--gold); font-size: 1.1rem; letter-spacing: 2px; }
+.site-navbar .brand { font-family: var(--font-head); color: var(--gold); font-size: 1.4rem; letter-spacing: 2px; }
 .site-navbar .links-desktop { display: flex; gap: 18px; align-items: center; }
 .site-navbar .links-desktop a { color: #ddd; text-transform: uppercase; font-size: 0.85rem; padding: 6px 8px; border-radius: 4px; }
 .site-navbar .links-desktop a:hover { background: rgba(255,255,255,0.02); color: var(--gold); }
