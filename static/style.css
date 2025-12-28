@@ -490,3 +490,30 @@ body.hide-top-nav .navbar { display: none !important; }
     .site-navbar .links-desktop { display: none; }
     .site-navbar .nav-toggle { display: inline-block; }
 }
+
+/* New navbar styles (modern, compact) */
+.site-navbar { position: sticky; top: 0; left: 0; width: 100%; background: rgba(5,5,5,0.85); backdrop-filter: blur(4px); z-index: 10000; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.site-navbar .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; max-width: 1200px; margin: 0 auto; }
+.site-navbar .brand { font-family: var(--font-head); color: var(--gold); font-size: 1.1rem; letter-spacing: 2px; }
+.site-navbar .links-desktop { display: flex; gap: 18px; align-items: center; }
+.site-navbar .links-desktop a { color: #ddd; text-transform: uppercase; font-size: 0.85rem; padding: 6px 8px; border-radius: 4px; }
+.site-navbar .links-desktop a:hover { background: rgba(255,255,255,0.02); color: var(--gold); }
+.site-navbar .nav-actions { display: flex; align-items: center; gap: 10px; }
+.site-navbar .nav-login { color: #ccc; padding: 6px 10px; text-decoration: none; border-radius: 4px; }
+.site-navbar .nav-cta { border: 1px solid var(--gold); padding: 8px 14px; color: var(--gold); border-radius: 4px; }
+.site-navbar .nav-toggle { display: none; background: transparent; border: none; color: var(--gold); cursor: pointer; padding: 6px; }
+.site-navbar .nav-toggle .hamburger { display: block; width: 20px; height: 2px; background: var(--gold); position: relative; }
+.site-navbar .nav-toggle .hamburger:before, .site-navbar .nav-toggle .hamburger:after { content: ''; position: absolute; left: 0; width: 20px; height: 2px; background: var(--gold); }
+.site-navbar .nav-toggle .hamburger:before { top: -6px; }
+.site-navbar .nav-toggle .hamburger:after { top: 6px; }
+.nav-panel { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--surface); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+.nav-panel.open { display: block; }
+.nav-panel a { display: block; padding: 12px 20px; color: #ddd; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.nav-panel a.gold-text { color: var(--gold); }
+
+@media (max-width: 900px) {
+    .site-navbar .links-desktop { display: none; }
+    .site-navbar .nav-toggle { display: inline-block; }
+    .site-navbar .nav-actions .nav-login { display: none; }
+}
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VRIANO | The World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="cursor-glow"></div>
+
+    {% include '_navbar.html' %}
+
+    <main>
+        <section class="hero" style="height: 60vh;">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2000&auto=format&fit=crop" alt="Offers">
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-headline">
+                    <span class="line">Özel</span>
+                    <span class="line indent">Davetler</span>
+                </h1>
+            </div>
+        </section>
+
+        <section class="manifesto-section">
+            <div class="container">
+                <h2 class="reveal-text" style="color: var(--gold); font-size: 2rem; margin-bottom: 2rem;">Sezon Fırsatları</h2>
+                <div class="offers-grid">
+                    {% for offer in offers %}
+                    <div class="offer-card parallax-card">
+                        <h3>{{ offer.title }}</h3>
+                        <p>{{ offer.description }}</p>
+                        <div class="offer-divider"></div>
+                        <span class="offer-tag">Exclusive</span>
+                    </div>
+                    {% else %}
+                    <p>Şu anda aktif bir davet bulunmuyor.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <small>© 2025 VRIANO VIP.</small>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

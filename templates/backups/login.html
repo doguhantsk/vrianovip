@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VRIANO | Member Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="login-page">
+    <div class="cursor-glow"></div>
+
+    {% include '_navbar.html' %}
+
+    <main class="login-container">
+        <div class="login-box parallax-card">
+            <h2 class="intro-title" style="font-size: 2rem; margin-bottom: 30px; animation: none; opacity: 1;">Yönetici Girişi</h2>
+            
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="error-msg">{{ messages[0] }}</div>
+              {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/login">
+                <div class="input-group">
+                    <input type="text" name="username" required placeholder="Kullanıcı Adı">
+                    <span class="bar"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" required placeholder="Şifre">
+                    <span class="bar"></span>
+                </div>
+                <button type="submit" class="btn-gold full-width">Giriş Yap</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

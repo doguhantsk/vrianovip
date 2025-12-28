@@ -96,31 +96,25 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-        // --- SITE NAV TOGGLE ---
-        const navToggles = document.querySelectorAll('.nav-toggle');
-        navToggles.forEach(toggle => {
-            const panel = document.querySelector('.nav-panel');
-            toggle.addEventListener('click', (e) => {
-                const expanded = toggle.getAttribute('aria-expanded') === 'true';
-                toggle.setAttribute('aria-expanded', String(!expanded));
-                if (panel) {
-                    const open = panel.classList.toggle('open');
-                    panel.setAttribute('aria-hidden', String(!open));
-                }
-            });
+    // --- SITE NAV TOGGLE (new navbar) ---
+    (function(){
+        const toggle = document.querySelector('.nav-toggle');
+        const panel = document.querySelector('.nav-panel');
+        if (!toggle || !panel) return;
+        toggle.addEventListener('click', () => {
+            const open = panel.classList.toggle('open');
+            panel.setAttribute('aria-hidden', String(!open));
+            toggle.setAttribute('aria-expanded', String(open));
         });
-
-        // close nav-panel when a link is clicked
-        const navPanel = document.querySelector('.nav-panel');
-        if (navPanel) {
-            navPanel.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                    navPanel.classList.remove('open');
-                    navPanel.setAttribute('aria-hidden', 'true');
-                    navToggles.forEach(t => t.setAttribute('aria-expanded', 'false'));
-                });
-            });
-        }
+        // close when a panel link clicked
+        panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            panel.classList.remove('open');
+            panel.setAttribute('aria-hidden', 'true');
+            toggle.setAttribute('aria-expanded', 'false');
+        }));
+        // close on escape
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); } });
+    })();
     // --- WHATSAPP SİPARİŞ MODALI ---
     const modal = document.getElementById('productModal');
     const modalImg = document.getElementById('modalImg');
