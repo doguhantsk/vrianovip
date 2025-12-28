@@ -200,7 +200,16 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
 @media (max-width: 900px) {
     body { padding-bottom: 80px; }
     .navbar { padding: 16px 18px; }
+    /* Show nav links normally on small screens so pages without a menu button still display navigation */
     .nav-links {
+        display: flex; position: static; width: auto; height: auto;
+        background: transparent; flex-direction: row; gap: 16px; align-items: center;
+        transform: none; transition: none; border-bottom: none;
+    }
+
+    /* If an explicit overlay behavior is desired, add the `nav-overlay` class to `nav.navbar` in the template.
+       This keeps the full-screen menu behavior opt-in and prevents hiding links on pages without a menu button. */
+    .navbar.nav-overlay .nav-links {
         position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
         background-color: var(--bg);
         flex-direction: column; justify-content: center; align-items: center;
@@ -209,7 +218,7 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
         transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
         border-bottom: 1px solid var(--gold);
     }
-    .nav-links.active { transform: translateY(0); }
+    .navbar.nav-overlay .nav-links.active { transform: translateY(0); }
     .menu-btn {
         display: block; position: relative; z-index: 999;
         font-family: var(--font-head); letter-spacing: 2px;
