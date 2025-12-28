@@ -21,7 +21,37 @@
     <input type="checkbox" id="u-topbar__button" name="u-topbar__button" class="nav-check" style="display:none;">
 <input type="checkbox" id="u-mobile__button" name="u-mobile__button" class="nav-check" style="display:none;">
 
-{% include '_navbar.html' %}
+<header class="v-header">
+    <div class="header-container">
+        <a href="/" class="brand">VRİANO</a>
+        
+        <label for="u-topbar__button" class="menu-label">
+            <span class="fa fa-bars icon-open"></span>
+            <span class="fa fa-times icon-close"></span>
+        </label>
+    </div>
+
+    <div class="v-menu-panel">
+        <ul class="v-menu-links">
+            <li><a href="/">ANA SAYFA</a></li>
+            <li><a href="/ayakkabi">KOLEKSİYON</a></li>
+            <li><a href="/canta">ÇANTALAR</a></li>
+            <li><a href="/offers">FIRSATLAR</a></li>
+            <li><a href="/login" class="gold-text">GİRİŞ YAP</a></li>
+        </ul>
+    </div>
+
+    <div class="v-overlay-social">
+        <div class="social-btns">
+            <a href="https://wa.me/numaraniz" class="social-btn fa fa-whatsapp"></a>
+            <a href="https://instagram.com/vrianovip" class="social-btn fa fa-instagram"></a>
+        </div>
+    </div>
+
+    <label for="u-mobile__button" class="v-main-btn">
+        <span class="fa fa-plus plus-icon"></span>
+    </label>
+</header>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
