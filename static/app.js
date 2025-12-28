@@ -96,6 +96,31 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+        // --- SITE NAV TOGGLE ---
+        const navToggles = document.querySelectorAll('.nav-toggle');
+        navToggles.forEach(toggle => {
+            const panel = document.querySelector('.nav-panel');
+            toggle.addEventListener('click', (e) => {
+                const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', String(!expanded));
+                if (panel) {
+                    const open = panel.classList.toggle('open');
+                    panel.setAttribute('aria-hidden', String(!open));
+                }
+            });
+        });
+
+        // close nav-panel when a link is clicked
+        const navPanel = document.querySelector('.nav-panel');
+        if (navPanel) {
+            navPanel.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navPanel.classList.remove('open');
+                    navPanel.setAttribute('aria-hidden', 'true');
+                    navToggles.forEach(t => t.setAttribute('aria-expanded', 'false'));
+                });
+            });
+        }
     // --- WHATSAPP SİPARİŞ MODALI ---
     const modal = document.getElementById('productModal');
     const modalImg = document.getElementById('modalImg');
