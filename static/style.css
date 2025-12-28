@@ -257,6 +257,10 @@ footer { padding: 40px; border-top: 1px solid #111; text-align: center; }
     .mobile-bottom-nav a { color: var(--text); font-size: 0.85rem; text-align: center; flex: 1; padding: 6px 0; }
     .mobile-bottom-nav a span { display: block; }
 }
+
+/* Hide top/bottom nav depending on first menu used on mobile */
+body.hide-bottom-nav .mobile-bottom-nav { display: none !important; }
+body.hide-top-nav .navbar { display: none !important; }
 /* --- ÜRÜN İNCELEME PENCERESİ (MODAL) --- */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;

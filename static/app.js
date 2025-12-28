@@ -40,6 +40,51 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
+    // Keep only the first-used menu visible on mobile: top vs bottom
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const bottomNav = document.querySelector('.mobile-bottom-nav');
+        let firstMenuUsed = null;
+
+        function setFirstUsed(kind) {
+            if (firstMenuUsed) return;
+            firstMenuUsed = kind;
+            if (kind === 'top') document.body.classList.add('hide-bottom-nav');
+            if (kind === 'bottom') document.body.classList.add('hide-top-nav');
+        }
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => setFirstUsed('top'), { once: true });
+        }
+
+        if (bottomNav) {
+            bottomNav.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => setFirstUsed('bottom'), { once: true });
+            });
+        }
+
+        // If nav-links gets activated by other scripts, treat it as top used
+        if (navLinks) {
+            const mo = new MutationObserver(muts => {
+                muts.forEach(m => {
+                    if (m.attributeName === 'class' && navLinks.classList.contains('active')) {
+                        setFirstUsed('top');
+                    }
+                });
+            });
+            mo.observe(navLinks, { attributes: true });
+        }
+
+        // Reset behavior on desktop resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 900) {
+                document.body.classList.remove('hide-bottom-nav', 'hide-top-nav');
+                firstMenuUsed = null;
+            }
+        });
+    });
     // --- WHATSAPP SİPARİŞ MODALI ---
     const modal = document.getElementById('productModal');
     const modalImg = document.getElementById('modalImg');
