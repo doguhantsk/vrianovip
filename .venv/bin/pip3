@@ -1,4 +1,4 @@
-#!/Users/doguhantaskin/Desktop/vrianovip/.venv/bin/python3
+#!/Users/doguhantaskin/Desktop/projeler/vrianovip/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
