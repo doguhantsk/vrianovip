@@ -11,12 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Kategori Değiştirme
-function setCategory(category) {
+function setCategory(category, btnEl) {
     currentCategory = category;
-    
+
     // Buton stillerini güncelle
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if (btnEl && btnEl.classList) {
+        btnEl.classList.add('active');
+    } else {
+        // fallback: activate first button for the category mapping
+        const mapping = { 'shoes': 0, 'bags': 1, 'offers': 2 };
+        const idx = mapping[category] || 0;
+        const btn = document.querySelectorAll('.tab-btn')[idx];
+        if (btn) btn.classList.add('active');
+    }
 
     // Başlığı güncelle
     const titles = { 'shoes': 'Ayakkabı Listesi', 'bags': 'Çanta Listesi', 'offers': 'Fırsat Listesi' };
@@ -46,8 +54,11 @@ async function loadData() {
         // Simüle edilmiş veri çekme (Backend endpointleri eklenene kadar HTML'den okuma yapılabilir ama zordur)
         // Doğrusu: Flask tarafına basit bir API route eklemektir.
         
-        const response = await fetch(apiEndpoints[currentCategory].get); 
-        if (!response.ok) throw new Error('Veri çekilemedi');
+        const response = await fetch(apiEndpoints[currentCategory].get, { credentials: 'same-origin' }); 
+        if (!response.ok) {
+            if (response.status === 401) return window.location = '/login';
+            throw new Error('Veri çekilemedi');
+        }
         
         const data = await response.json();
         renderTable(data);
@@ -94,12 +105,14 @@ async function deleteItem(id) {
 
         const response = await fetch(apiEndpoints[currentCategory].delete, {
             method: 'POST',
-            body: formData
+            body: formData,
+            credentials: 'same-origin'
         });
 
         if (response.ok) {
             loadData(); // Tabloyu yenile
         } else {
+            if (response.status === 401) return window.location = '/login';
             alert('Silme işlemi başarısız.');
         }
     } catch (error) {
@@ -126,14 +139,20 @@ document.getElementById('adminForm').addEventListener('submit', async (e) => {
     try {
         const response = await fetch(apiEndpoints[currentCategory].add, {
             method: 'POST',
-            body: formData
+            body: formData,
+            credentials: 'same-origin'
         });
 
         if (response.ok) {
             document.getElementById('adminForm').reset();
             loadData(); // Listeyi güncelle
         } else {
-            alert('Ekleme başarısız!');
+            let msg = 'Ekleme başarısız!';
+            try {
+                const payload = await response.json();
+                if (payload && payload.error) msg = payload.error;
+            } catch (e) {}
+            alert(msg);
         }
     } catch (error) {
         console.error('Hata:', error);
